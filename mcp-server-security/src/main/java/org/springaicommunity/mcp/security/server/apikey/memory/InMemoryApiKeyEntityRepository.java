@@ -25,6 +25,8 @@ import org.springaicommunity.mcp.security.server.apikey.ApiKeyEntity;
 import org.springaicommunity.mcp.security.server.apikey.ApiKeyEntityRepository;
 
 /**
+ * In-memory {@link ApiKeyEntityRepository} backed by a {@link java.util.Map}.
+ *
  * @author Daniel Garnier-Moiroux
  */
 public class InMemoryApiKeyEntityRepository<T extends ApiKeyEntity> implements ApiKeyEntityRepository<T> {

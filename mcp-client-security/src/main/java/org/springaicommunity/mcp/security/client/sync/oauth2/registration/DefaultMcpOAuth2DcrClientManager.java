@@ -66,6 +66,9 @@ public class DefaultMcpOAuth2DcrClientManager implements McpOAuth2DcrClientManag
 	 * (McpClientRegistrationRepository, DynamicClientRegistrationService,
 	 * McpMetadataDiscoveryService, UrlValidator)} instead.
 	 */
+	// @InlineMe is not available on the classpath (error_prone_annotations is not a
+	// declared dependency), so the inlining suggestion is suppressed instead.
+	@SuppressWarnings("InlineMeSuggester")
 	@Deprecated
 	public DefaultMcpOAuth2DcrClientManager(McpClientRegistrationRepository repository,
 			DynamicClientRegistrationService clientRegistrationService, McpMetadataDiscoveryService discovery) {

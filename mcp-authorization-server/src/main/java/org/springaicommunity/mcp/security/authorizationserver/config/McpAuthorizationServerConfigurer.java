@@ -50,6 +50,10 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 /**
+ * {@link HttpSecurity} configurer that adapts a Spring Authorization Server to be
+ * MCP-compatible, optionally enabling dynamic client registration and client id metadata
+ * documents.
+ *
  * @author Daniel Garnier-Moiroux
  */
 public class McpAuthorizationServerConfigurer
@@ -201,6 +205,9 @@ public class McpAuthorizationServerConfigurer
 	 * Lifted from
 	 * {@code org.springframework.security.oauth2.server.authorization.config.annotation.web.configurers.OAuth2ConfigurerUtils}.
 	 */
+	// Suppressed to preserve call-site ergonomics and fidelity with the upstream
+	// Spring Security helper this was lifted from.
+	@SuppressWarnings("TypeParameterUnusedInFormals")
 	@Nullable static <T> T getOptionalBean(HttpSecurity http, ResolvableType type) {
 		ApplicationContext context = http.getSharedObject(ApplicationContext.class);
 		String[] names = context.getBeanNamesForType(type);

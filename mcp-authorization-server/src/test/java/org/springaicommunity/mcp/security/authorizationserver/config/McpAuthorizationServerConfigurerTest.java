@@ -12,7 +12,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
-import com.nimbusds.jose.jwk.source.ImmutableSecret;
 import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
 import org.junit.jupiter.api.BeforeEach;
@@ -120,6 +119,7 @@ class McpAuthorizationServerConfigurerTest {
 	}
 
 	@Test
+	@SuppressWarnings("StringSplitter")
 	void tokenIsCustomized() {
 		var resp = this.mvc.post()
 			.uri("/oauth2/token")
@@ -146,9 +146,6 @@ class McpAuthorizationServerConfigurerTest {
 	@EnableWebMvc
 	@EnableWebSecurity
 	static class TestConfig {
-
-		private static final ImmutableSecret<SecurityContext> SECRET = new ImmutableSecret<>(
-				"0558BC36-378D-4809-A551-E61F3B8894B9-8ECA8B16-D07E-4856-9564-50637494E51A".getBytes());
 
 		@Bean
 		AtomicInteger authzServerCustomizationCount() {

@@ -230,7 +230,7 @@ class McpApiKeyConfigurerTest {
 		private ObjectPostProcessor<Object> getPostProcessor() {
 			return new ObjectPostProcessor<>() {
 				@Override
-				public <O extends Object> O postProcess(O object) {
+				public <O> O postProcess(O object) {
 					postProcessedClasses.add(object.getClass());
 					return object;
 				}

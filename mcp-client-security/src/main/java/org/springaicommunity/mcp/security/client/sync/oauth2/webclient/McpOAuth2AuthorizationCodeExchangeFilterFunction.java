@@ -35,6 +35,9 @@ import org.springframework.web.reactive.function.client.ExchangeFilterFunction;
 import org.springframework.web.reactive.function.client.ExchangeFunction;
 
 /**
+ * {@link ExchangeFilterFunction} that attaches an OAuth2 authorization-code access token,
+ * sourced from the MCP transport context, to outgoing WebClient requests.
+ *
  * @author Daniel Garnier-Moiroux
  */
 public class McpOAuth2AuthorizationCodeExchangeFilterFunction implements ExchangeFilterFunction {

@@ -103,6 +103,7 @@ public class AuthenticationMcpTransportContextProvider implements Supplier<McpTr
 			reactiveContextHolderAvailable = true;
 		}
 		catch (ClassNotFoundException ignored) {
+			// Class not on the classpath; reactive context propagation is disabled.
 		}
 		this.reactiveContextHolderAvailable = reactiveContextHolderAvailable;
 	}

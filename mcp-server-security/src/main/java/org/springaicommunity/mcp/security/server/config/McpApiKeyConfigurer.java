@@ -34,6 +34,8 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 /**
+ * {@link HttpSecurity} configurer that enables API key authentication for an MCP server.
+ *
  * @author Daniel Garnier-Moiroux
  */
 public class McpApiKeyConfigurer extends AbstractHttpConfigurer<McpApiKeyConfigurer, HttpSecurity> {

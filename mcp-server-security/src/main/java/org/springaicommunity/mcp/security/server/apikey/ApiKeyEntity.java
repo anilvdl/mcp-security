@@ -23,6 +23,9 @@ import org.springframework.security.core.CredentialsContainer;
 import org.springframework.security.core.GrantedAuthority;
 
 /**
+ * A stored API key, exposing its granted authorities and able to produce a defensive copy
+ * of itself.
+ *
  * @author Daniel Garnier-Moiroux
  */
 public interface ApiKeyEntity extends ApiKey, CredentialsContainer {
@@ -31,6 +34,8 @@ public interface ApiKeyEntity extends ApiKey, CredentialsContainer {
 		return Collections.emptyList();
 	}
 
+	// intentional generic return; see PR notes
+	@SuppressWarnings("TypeParameterUnusedInFormals")
 	<T extends ApiKeyEntity> T copy();
 
 }

@@ -33,6 +33,9 @@ import org.springframework.security.oauth2.server.resource.OAuth2ProtectedResour
 import org.springframework.util.Assert;
 
 /**
+ * {@link HttpSecurity} configurer that sets up an MCP server as an OAuth2 resource
+ * server.
+ *
  * @author Daniel Garnier-Moiroux
  */
 public class McpServerOAuth2Configurer extends AbstractHttpConfigurer<McpServerOAuth2Configurer, HttpSecurity> {
