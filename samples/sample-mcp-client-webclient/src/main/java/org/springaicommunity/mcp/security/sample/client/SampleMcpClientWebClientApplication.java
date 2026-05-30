@@ -21,6 +21,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.security.autoconfigure.UserDetailsServiceAutoConfiguration;
 
 /**
+ * Sample WebClient-based MCP client application demonstrating OAuth2-secured access.
+ *
  * @author Daniel Garnier-Moiroux
  */
 @SpringBootApplication(exclude = { UserDetailsServiceAutoConfiguration.class })

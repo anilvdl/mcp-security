@@ -24,6 +24,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.util.Assert;
 
 /**
+ * In-memory {@link ApiKeyEntity} implementation, created through its {@link Builder}.
+ *
  * @author Daniel Garnier-Moiroux
  */
 public class ApiKeyEntityImpl implements ApiKeyEntity {

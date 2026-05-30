@@ -286,6 +286,8 @@ class DefaultMcpOAuth2DcrClientManagerTests {
 		}
 
 		/**
+		 * Updating a client registration in response to an insufficient_scope challenge
+		 * widens its scopes.
 		 * @see ScopeStepUpTests
 		 */
 		@Test

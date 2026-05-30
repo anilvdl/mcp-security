@@ -33,6 +33,8 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 
 /**
+ * Servlet filter that extracts an API key from the request and authenticates it.
+ *
  * @author Daniel Garnier-Moiroux
  */
 public class ApiKeyAuthenticationFilter extends AuthenticationFilter {

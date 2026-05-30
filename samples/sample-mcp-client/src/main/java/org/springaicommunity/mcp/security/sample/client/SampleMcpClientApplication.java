@@ -20,6 +20,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
+ * Sample MCP client application demonstrating OAuth2-secured access.
+ *
  * @author Daniel Garnier-Moiroux
  */
 @SpringBootApplication

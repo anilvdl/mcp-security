@@ -22,6 +22,9 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.util.UriComponentsBuilder;
 
 /**
+ * Resolves the absolute resource identifier (URL) of a protected resource from its
+ * configured path and the current request.
+ *
  * @author Joe Grandja
  */
 public final class ResourceIdentifier {

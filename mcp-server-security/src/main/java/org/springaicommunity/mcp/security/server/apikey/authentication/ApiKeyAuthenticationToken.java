@@ -29,6 +29,9 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.util.Assert;
 
 /**
+ * {@link org.springframework.security.core.Authentication} token carrying an API key, in
+ * either an unauthenticated (credentials) or authenticated (principal) state.
+ *
  * @author Daniel Garnier-Moiroux
  */
 @Transient

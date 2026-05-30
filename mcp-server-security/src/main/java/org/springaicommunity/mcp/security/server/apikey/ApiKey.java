@@ -19,6 +19,8 @@ package org.springaicommunity.mcp.security.server.apikey;
 import org.jspecify.annotations.Nullable;
 
 /**
+ * An API key credential, consisting of a public identifier and a secret.
+ *
  * @author Daniel Garnier-Moiroux
  */
 public interface ApiKey {

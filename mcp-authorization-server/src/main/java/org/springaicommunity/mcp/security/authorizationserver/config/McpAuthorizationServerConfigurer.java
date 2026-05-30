@@ -53,6 +53,10 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 /**
+ * {@link HttpSecurity} configurer that adapts a Spring Authorization Server to be
+ * MCP-compatible, optionally enabling dynamic client registration and client id metadata
+ * documents.
+ *
  * @author Daniel Garnier-Moiroux
  */
 public class McpAuthorizationServerConfigurer

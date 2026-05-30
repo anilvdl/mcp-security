@@ -193,9 +193,6 @@ class McpAuthorizationServerConfigurerTest {
 	@EnableWebSecurity
 	static class TestConfig {
 
-		private static final ImmutableSecret<SecurityContext> SECRET = new ImmutableSecret<>(
-				"0558BC36-378D-4809-A551-E61F3B8894B9-8ECA8B16-D07E-4856-9564-50637494E51A".getBytes());
-
 		private static final Consumer<OAuth2ClientRegistrationAuthenticationContext> clientRegistrationValidator = DEFAULT_REDIRECT_URI_VALIDATOR
 			.andThen(ctx -> {
 				OAuth2ClientRegistrationAuthenticationToken registration = ctx.getAuthentication();

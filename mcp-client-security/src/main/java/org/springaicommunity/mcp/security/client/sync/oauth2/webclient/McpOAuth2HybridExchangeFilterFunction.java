@@ -39,6 +39,9 @@ import org.springframework.web.reactive.function.client.ExchangeFilterFunction;
 import org.springframework.web.reactive.function.client.ExchangeFunction;
 
 /**
+ * {@link ExchangeFilterFunction} that uses an authorization-code access token when a user
+ * context is present, and falls back to a client-credentials token otherwise.
+ *
  * @author Daniel Garnier-Moiroux
  */
 public class McpOAuth2HybridExchangeFilterFunction implements ExchangeFilterFunction {

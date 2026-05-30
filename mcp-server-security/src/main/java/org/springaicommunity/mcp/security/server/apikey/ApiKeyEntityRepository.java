@@ -19,6 +19,8 @@ package org.springaicommunity.mcp.security.server.apikey;
 import org.jspecify.annotations.Nullable;
 
 /**
+ * Repository for looking up stored {@link ApiKeyEntity} instances by their key id.
+ *
  * @author Daniel Garnier-Moiroux
  */
 public interface ApiKeyEntityRepository<T extends ApiKeyEntity> {

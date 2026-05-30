@@ -29,6 +29,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.util.Assert;
 
 /**
+ * {@link AuthenticationProvider} that validates an API key against a configured
+ * {@link ApiKeyEntityRepository}.
+ *
  * @author Daniel Garnier-Moiroux
  */
 public class ApiKeyAuthenticationProvider<T extends ApiKeyEntity> implements AuthenticationProvider {

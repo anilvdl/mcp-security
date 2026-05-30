@@ -16,6 +16,7 @@
 package org.springframework.security.config.annotation.web.configurers.oauth2.server.authorization.client.metadata;
 
 import java.net.URI;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -75,7 +76,7 @@ public final class DefaultClientIdMetadataDocumentResolver implements ClientIdMe
 	private static long getMaxAgeSeconds(HttpHeaders headers) {
 		String cacheControl = headers.getFirst(HttpHeaders.CACHE_CONTROL);
 		if (cacheControl != null) {
-			if (cacheControl.toLowerCase().contains("no-store")) {
+			if (cacheControl.toLowerCase(Locale.ROOT).contains("no-store")) {
 				return -1;
 			}
 			Matcher matcher = MAX_AGE_PATTERN.matcher(cacheControl);
