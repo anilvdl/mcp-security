@@ -24,8 +24,6 @@ import org.springframework.ai.mcp.customizer.McpClientCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientManager;
-import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
-import org.springframework.security.oauth2.client.registration.InMemoryClientRegistrationRepository;
 import org.springframework.web.reactive.function.client.WebClient;
 
 /**
@@ -43,20 +41,6 @@ class McpConfiguration {
 	WebClient.Builder mcpWebClientBuilder(OAuth2AuthorizedClientManager clientManager) {
 		return WebClient.builder()
 			.filter(new McpOAuth2AuthorizationCodeExchangeFilterFunction(clientManager, "authserver"));
-	}
-
-	private static String findUniqueClientRegistration(ClientRegistrationRepository clientRegistrationRepository) {
-		String registrationId;
-		if (!(clientRegistrationRepository instanceof InMemoryClientRegistrationRepository repo)) {
-			throw new IllegalStateException("Expected an InMemoryClientRegistrationRepository");
-		}
-		var iterator = repo.iterator();
-		var firstRegistration = iterator.next();
-		if (iterator.hasNext()) {
-			throw new IllegalStateException("Expected a single Client Registration");
-		}
-		registrationId = firstRegistration.getRegistrationId();
-		return registrationId;
 	}
 
 }
