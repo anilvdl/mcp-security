@@ -19,6 +19,8 @@ package org.springaicommunity.mcp.security.server.apikey;
 import org.springframework.util.StringUtils;
 
 /**
+ * Default API key implementation, parsed from the {@code id.secret} string format.
+ *
  * @author Daniel Garnier-Moiroux
  */
 public class ApiKeyImpl implements ApiKey {
@@ -36,8 +38,10 @@ public class ApiKeyImpl implements ApiKey {
 		if (!StringUtils.hasText(apiKey) || !apiKey.contains(".")) {
 			throw new IllegalArgumentException("API key must be in the format <id>.<secret>");
 		}
-		var parts = apiKey.split("\\.");
-		return new ApiKeyImpl(parts[0], parts[1]);
+		int separatorIndex = apiKey.indexOf('.');
+		var id = apiKey.substring(0, separatorIndex);
+		var secret = apiKey.substring(separatorIndex + 1);
+		return new ApiKeyImpl(id, secret);
 	}
 
 	@Override
