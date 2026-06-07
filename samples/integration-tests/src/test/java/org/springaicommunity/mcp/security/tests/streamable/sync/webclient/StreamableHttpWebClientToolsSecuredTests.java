@@ -18,9 +18,7 @@ import org.springaicommunity.mcp.security.tests.common.configuration.McpServerCo
 import tools.jackson.databind.json.JsonMapper;
 
 import org.springframework.ai.mcp.client.common.autoconfigure.properties.McpClientCommonProperties;
-import org.springframework.ai.mcp.client.httpclient.autoconfigure.SseHttpClientTransportAutoConfiguration;
 import org.springframework.ai.mcp.client.httpclient.autoconfigure.StreamableHttpHttpClientTransportAutoConfiguration;
-import org.springframework.ai.mcp.client.webflux.autoconfigure.SseWebFluxTransportAutoConfiguration;
 import org.springframework.ai.mcp.client.webflux.transport.WebClientStreamableHttpTransport;
 import org.springframework.ai.model.anthropic.autoconfigure.AnthropicChatAutoConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -116,9 +114,8 @@ class StreamableHttpWebClientToolsSecuredTests {
 	@EnableWebMvc
 	@EnableWebSecurity
 	@EnableAutoConfiguration(exclude = { OAuth2AuthorizationServerAutoConfiguration.class,
-			OAuth2AuthorizationServerJwtAutoConfiguration.class, SseHttpClientTransportAutoConfiguration.class,
-			SseWebFluxTransportAutoConfiguration.class, StreamableHttpHttpClientTransportAutoConfiguration.class,
-			AnthropicChatAutoConfiguration.class })
+			OAuth2AuthorizationServerJwtAutoConfiguration.class,
+			StreamableHttpHttpClientTransportAutoConfiguration.class, AnthropicChatAutoConfiguration.class })
 	@Import({ McpClientConfiguration.class, AuthorizationServerConfiguration.class, McpServerConfiguration.class })
 	static class StreamableHttpToolsSecuredConfig {
 

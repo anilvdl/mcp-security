@@ -1,20 +1,14 @@
 package org.springaicommunity.mcp.security.tests.streamable.sync.webclient;
 
-import java.net.http.HttpResponse;
 import java.util.concurrent.atomic.AtomicReference;
 
-import io.modelcontextprotocol.client.transport.McpHttpClientTransportAuthorizationException;
 import io.modelcontextprotocol.json.jackson3.JacksonMcpJsonMapper;
 import io.modelcontextprotocol.spec.McpClientTransport;
-import io.modelcontextprotocol.spec.McpTransportException;
-import org.assertj.core.api.ThrowableAssert;
 import org.springaicommunity.mcp.security.tests.common.configuration.McpServerApiKeyConfiguration;
 import org.springaicommunity.mcp.security.tests.common.tests.ApiKeysAbstractTests;
 import tools.jackson.databind.json.JsonMapper;
 
-import org.springframework.ai.mcp.client.httpclient.autoconfigure.SseHttpClientTransportAutoConfiguration;
 import org.springframework.ai.mcp.client.httpclient.autoconfigure.StreamableHttpHttpClientTransportAutoConfiguration;
-import org.springframework.ai.mcp.client.webflux.autoconfigure.SseWebFluxTransportAutoConfiguration;
 import org.springframework.ai.mcp.client.webflux.transport.WebClientStreamableHttpTransport;
 import org.springframework.ai.model.anthropic.autoconfigure.AnthropicChatAutoConfiguration;
 import org.springframework.beans.factory.annotation.Value;
@@ -28,8 +22,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.web.reactive.function.client.ClientRequest;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.assertj.core.api.InstanceOfAssertFactories.type;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, properties = """
 		mcp.server.class=org.springaicommunity.mcp.security.tests.streamable.sync.server.StreamableHttpMcpApiKeyServer
@@ -73,9 +65,8 @@ public class WebClientApiKeyTests extends ApiKeysAbstractTests {
 	@EnableWebMvc
 	@EnableWebSecurity
 	@EnableAutoConfiguration(exclude = { OAuth2AuthorizationServerAutoConfiguration.class,
-			OAuth2AuthorizationServerJwtAutoConfiguration.class, SseHttpClientTransportAutoConfiguration.class,
-			SseWebFluxTransportAutoConfiguration.class, StreamableHttpHttpClientTransportAutoConfiguration.class,
-			AnthropicChatAutoConfiguration.class })
+			OAuth2AuthorizationServerJwtAutoConfiguration.class,
+			StreamableHttpHttpClientTransportAutoConfiguration.class, AnthropicChatAutoConfiguration.class })
 	@Import({ McpServerApiKeyConfiguration.class })
 	static class ApiKeyConfig {
 
