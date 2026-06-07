@@ -29,8 +29,6 @@ import org.springaicommunity.mcp.security.tests.common.configuration.McpServerCo
 import tools.jackson.databind.json.JsonMapper;
 
 import org.springframework.ai.mcp.client.common.autoconfigure.McpClientAutoConfiguration;
-import org.springframework.ai.mcp.client.httpclient.autoconfigure.SseHttpClientTransportAutoConfiguration;
-import org.springframework.ai.mcp.client.webflux.autoconfigure.SseWebFluxTransportAutoConfiguration;
 import org.springframework.ai.mcp.client.webflux.autoconfigure.StreamableHttpWebFluxTransportAutoConfiguration;
 import org.springframework.ai.mcp.customizer.McpClientCustomizer;
 import org.springframework.ai.model.anthropic.autoconfigure.AnthropicChatAutoConfiguration;
@@ -124,7 +122,6 @@ class ClientIdMetadataTests {
 	@EnableWebSecurity
 	@EnableAutoConfiguration(
 			exclude = { OAuth2AuthorizationServerJwtAutoConfiguration.class, McpClientAutoConfiguration.class,
-					SseHttpClientTransportAutoConfiguration.class, SseWebFluxTransportAutoConfiguration.class,
 					StreamableHttpWebFluxTransportAutoConfiguration.class, AnthropicChatAutoConfiguration.class })
 	@Import({ AuthorizationServerConfiguration.class, McpServerConfiguration.class, InMemoryMcpClientRepository.class,
 			McpController.class })

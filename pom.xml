@@ -6,7 +6,7 @@
 
     <groupId>org.springaicommunity</groupId>
     <artifactId>mcp-security-parent</artifactId>
-    <version>0.1.12-SNAPSHOT</version>
+    <version>0.1.13-SNAPSHOT</version>
 
     <packaging>pom</packaging>
     <url>https://github.com/spring-ai-community/mcp-security</url>
@@ -79,9 +79,9 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
 
-        <mcp.java.sdk.version>2.0.0-M2</mcp.java.sdk.version>
-        <spring-ai.version>2.0.0-M6</spring-ai.version>
-        <spring-boot.version>4.0.2</spring-boot.version>
+        <mcp.java.sdk.version>2.0.0-RC1</mcp.java.sdk.version>
+        <spring-ai.version>2.0.0-RC1</spring-ai.version>
+        <spring-boot.version>4.0.6</spring-boot.version>
         <spring-boot-testjars.version>0.4.0.0</spring-boot-testjars.version>
 
         <!-- plugin versions -->
