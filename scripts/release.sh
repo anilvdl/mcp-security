@@ -15,7 +15,7 @@ fi
 ./mvnw versions:set -DgenerateBackupPoms=false -DnewVersion="$VERSION"
 # macos sed
 sed -i '' -e "s/<version>.*<\\/version>/<version>${VERSION}<\\/version>/g" README.md
-sed -i '' -e "s/:[0-9]\\.[0-9]\\.[0-9]/:${VERSION}/g" README.md
+sed -i '' -e "s/:[0-9]\\.[0-9]\\.[0-9]+/:${VERSION}/g" README.md
 git commit \
   --include "README.md" \
   --include "pom.xml" \
