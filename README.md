@@ -376,6 +376,7 @@ Key features:
 
 - OAuth2 `authorization_code`, `client_credentials`, and hybrid flows
 - Dynamic Client Registration (DCR) with automatic MCP server metadata discovery
+- Client ID Metadata Document (CIMD): alternative to DCR where the client hosts its own metadata document
 - Scope step-up: automatic re-authorization when the MCP server requires additional scopes
 - Spring Boot auto-configuration via `mcp-client-security-spring-boot`
 
@@ -538,6 +539,50 @@ property:
 
 ```properties
 spring.ai.mcp.client.authorization.dynamic-client-registration.allow-loopback-addresses=true
+```
+
+### Client ID Metadata Document (CIMD)
+
+CIMD is an alternative to DCR where the client uses a URL as its `client_id`. This URL points to a JSON
+metadata document hosted by the client itself. The authorization server fetches that document when processing
+an authorization request.
+There is no auto-configuration support for CIMD, so you need to manually declare a filter chain, and add the supporting
+beans explicilty.
+
+
+Add `McpClientOAuth2Configurer` to your security filter chain with CIMD enabled (this is the default):
+
+```java
+@Bean
+SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    return http
+            .authorizeHttpRequests(auth -> auth.anyRequest().permitAll())
+            .with(new McpClientOAuth2Configurer(), mcp -> mcp.cimd(true))
+            .build();
+}
+```
+
+This registers a filter that serves the client metadata document at `/{registrationId}/client-id-metadata.json`, valid for any `{registrationId}`.
+
+Then declare a `DefaultMcpOAuth2CimdClientManager` bean and use `OAuth2CimdHttpClientTransportCustomizer`
+instead of the DCR variant:
+
+```java
+@Bean
+McpOAuth2CimdClientManager cimdClientManager(
+        McpMetadataDiscoveryService discoveryService,
+        McpClientRegistrationRepository repo,
+        UrlValidator urlValidator) {
+    return new DefaultMcpOAuth2CimdClientManager(discoveryService, repo, urlValidator);
+}
+
+@Bean
+McpClientCustomizer<HttpClientStreamableHttpTransport.Builder> transportCustomizer(
+        OAuth2AuthorizedClientManager authorizedClientManager,
+        McpClientRegistrationRepository repo,
+        McpOAuth2CimdClientManager cimdClientManager) {
+    return new OAuth2CimdHttpClientTransportCustomizer(authorizedClientManager, repo, cimdClientManager);
+}
 ```
 
 ### Use with `McpClientOAuth2Configurer`
@@ -1040,6 +1085,47 @@ SecurityFilterChain securityFilterChain(HttpSecurity http) {
                 mcp.dynamicClientRegistration(false);
             })
             .build();
+}
+```
+
+### Client ID Metadata Document (CIMD)
+
+CIMD is an alternative to DCR where the client identifies itself with a URL pointing to a metadata document
+it hosts. The authorization server fetches that document to validate the client, instead of relying on a
+prior registration.
+
+To enable it, use the `cimd(true)` option in `McpAuthorizationServerConfigurer` (disabled by default):
+
+```java
+@Bean
+SecurityFilterChain securityFilterChain(HttpSecurity http) {
+    return http
+            .authorizeHttpRequests(auth -> auth.anyRequest().authenticated())
+            .with(McpAuthorizationServerConfigurer.mcpAuthorizationServer(), mcp -> {
+                mcp.cimd(true);
+            })
+            .formLogin(withDefaults())
+            .build();
+}
+```
+
+When CIMD is enabled, the authorization server:
+- Advertises `client_id_metadata_document` in its authorization server metadata
+- Accepts client_id URLs and fetches the corresponding metadata document to look up the client
+
+You also need to declare a `ClientIdMetadataDocumentRegisteredClientRepository` bean, which is responsible
+for fetching and validating the remote metadata document. If you also want to support traditionally registered
+clients (pre-registered or DCR) alongside CIMD, wrap both in a `DelegatingRegisteredClientRepository`.
+
+```java
+@Bean
+ClientIdMetadataDocumentRegisteredClientRepository cimdClientRepository() {
+    var repository = new ClientIdMetadataDocumentRegisteredClientRepository();
+    repository.setMetadataDocumentResolver(new DefaultClientIdMetadataDocumentResolver());
+    // Set allowLoopback=true in development to accept http://localhost URLs
+    repository.setMetadataValidator(new DefaultClientMetadataValidator(new DefaultUrlValidator(false)));
+    repository.setClientIdUrlValidator(new ClientIdUrlValidator(false));
+    return repository;
 }
 ```
 
