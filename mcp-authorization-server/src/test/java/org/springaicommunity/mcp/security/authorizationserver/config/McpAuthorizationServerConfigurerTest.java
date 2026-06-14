@@ -13,6 +13,7 @@ import java.util.function.Consumer;
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
+import com.nimbusds.jose.jwk.source.ImmutableSecret;
 import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
 import org.junit.jupiter.api.BeforeEach;
@@ -123,7 +124,6 @@ class McpAuthorizationServerConfigurerTest {
 	}
 
 	@Test
-	@SuppressWarnings("StringSplitter")
 	void tokenIsCustomized() {
 		var resp = this.mvc.post()
 			.uri("/oauth2/token")

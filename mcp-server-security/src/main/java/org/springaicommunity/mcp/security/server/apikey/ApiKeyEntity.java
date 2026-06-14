@@ -34,8 +34,6 @@ public interface ApiKeyEntity extends ApiKey, CredentialsContainer {
 		return Collections.emptyList();
 	}
 
-	// intentional generic return; see PR notes
-	@SuppressWarnings("TypeParameterUnusedInFormals")
 	<T extends ApiKeyEntity> T copy();
 
 }

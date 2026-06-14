@@ -38,7 +38,6 @@ public class InMemoryMcpSessionBindingRepository implements McpSessionBindingRep
 
 	private final Map<String, SessionBinding> bindings = new ConcurrentHashMap<>();
 
-	@SuppressWarnings("CanonicalDuration")
 	private Duration sessionTimeout = Duration.ofHours(48);
 
 	@Override

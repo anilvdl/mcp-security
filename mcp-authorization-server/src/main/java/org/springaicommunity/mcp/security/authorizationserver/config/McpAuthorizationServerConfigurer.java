@@ -225,9 +225,6 @@ public class McpAuthorizationServerConfigurer
 	 * Lifted from
 	 * {@code org.springframework.security.oauth2.server.authorization.config.annotation.web.configurers.OAuth2ConfigurerUtils}.
 	 */
-	// Suppressed to preserve call-site ergonomics and fidelity with the upstream
-	// Spring Security helper this was lifted from.
-	@SuppressWarnings("TypeParameterUnusedInFormals")
 	@Nullable static <T> T getOptionalBean(HttpSecurity http, ResolvableType type) {
 		ApplicationContext context = http.getSharedObject(ApplicationContext.class);
 		String[] names = context.getBeanNamesForType(type);

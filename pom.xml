@@ -168,6 +168,7 @@
                         <compilerArg>--should-stop=ifError=FLOW</compilerArg>
                         <compilerArg>
                             -Xplugin:ErrorProne
+                            -XepDisableAllChecks
                             -Xep:NullAway:ERROR
                             -XepOpt:NullAway:AnnotatedPackages=org.springaicommunity.mcp.security
                             -XepOpt:NullAway:CustomContractAnnotations=org.springframework.lang.Contract

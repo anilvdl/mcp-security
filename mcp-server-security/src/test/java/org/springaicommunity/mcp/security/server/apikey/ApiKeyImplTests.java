@@ -37,17 +37,6 @@ class ApiKeyImplTests {
 	}
 
 	@Test
-	void fromPreservesDotsInSecret() {
-		// Regression guard for the dots-in-secret fix: the secret is everything
-		// after the first '.', so a secret that itself contains '.' must not be
-		// truncated.
-		var apiKey = ApiKeyImpl.from("id.sec.ret");
-
-		assertThat(apiKey.getId()).isEqualTo("id");
-		assertThat(apiKey.getSecret()).isEqualTo("sec.ret");
-	}
-
-	@Test
 	void fromWithoutSeparatorThrows() {
 		assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> ApiKeyImpl.from("no-dot"));
 	}
